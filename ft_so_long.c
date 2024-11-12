@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:19:52 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/12 21:44:43 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/12 22:29:06 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,23 +172,35 @@ int	ft_movements(int keycode, t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
+	int	len_line;
 
+	len_line = 0;
+	game.count_line = 0;
 	if (argc != 2 || ft_strncmp(argv[1] + strlen(argv[1]) - 4, ".ber", 4) != 0)
 	{
 		printf("Invalid input\n");
 		return (0);
 	}
 	game.fd = open(argv[1], O_RDONLY);
+	while ((game.line = get_next_line(game.fd)) != NULL)
+	{
+		game.count_line++;
+		if (len_line == 0)
+			len_line = ft_strlen(game.line) - 1;
+		free(game.line);
+	}
+	close(game.fd);
 	game.width = 32;
 	game.height = 32;
 	game.mlx = mlx_init();
-	game.window = mlx_new_window(game.mlx, 320, 320, "Welcome in my bar !");
+	game.window = mlx_new_window(game.mlx, (32 * len_line), (32 * game.count_line), "Welcome in my bar !");
 	game.wall = mlx_xpm_file_to_image(game.mlx, "assets/wall.xpm", &game.width, &game.height);
 	game.ground = mlx_xpm_file_to_image(game.mlx, "assets/ground.xpm", &game.width, &game.height);
 	game.beer = mlx_xpm_file_to_image(game.mlx, "assets/beer.xpm", &game.width, &game.height);
 	game.exit = mlx_xpm_file_to_image(game.mlx, "assets/exit.xpm", &game.width, &game.height);
 	game.player = mlx_xpm_file_to_image(game.mlx, "assets/player.xpm", &game.width, &game.height);
 	game.y = 0;
+	game.fd = open(argv[1], O_RDONLY);
 	while ((game.line = get_next_line(game.fd)) != NULL)
 	{
 		game.x = 0;
@@ -220,6 +232,7 @@ int	main(int argc, char **argv)
 			game.i++;
 			game.x += game.width;
 		}
+		len_line = game.i;
 		game.count_line++;
 		game.y += game.height;
 		free(game.line);
