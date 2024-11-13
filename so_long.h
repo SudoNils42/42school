@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:49:55 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/12 12:04:48 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/13 17:16:24 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ typedef struct s_game
 	int		player_y;
 	int		count_line;
 	char	**map;
-	int		next_x;
-	int		next_y;
+	int		nbr_move;
+	int		len_map;
 }	t_game;
+
+int	ft_check_map(t_game *game);
+void	ft_fill_map(char **argv, t_game *game);
+
 #endif

@@ -6,11 +6,17 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:19:52 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/12 22:29:06 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/13 18:49:22 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	ft_close_window(void)
+{
+		printf("You left the bar\n");
+		exit(0);
+}
 
 int	ft_check_beer(t_game *game)
 {
@@ -34,8 +40,6 @@ int	ft_check_beer(t_game *game)
 
 void	ft_fill_map(char **argv, t_game *game)
 {
-	int		len;
-
 	game->fd = open(argv[1], O_RDONLY);
 	game->map = malloc(sizeof(char *) * (game->count_line + 1));
 	if (!game->map)
@@ -43,11 +47,11 @@ void	ft_fill_map(char **argv, t_game *game)
 	game->count_line = 0;
 	while ((game->line = get_next_line(game->fd)) != NULL)
 	{
-		len = ft_strlen(game->line);
-		game->map[game->count_line] = malloc(sizeof(char) * (len + 1));
+		game->len_map = ft_strlen(game->line);
+		game->map[game->count_line] = malloc(sizeof(char) * (game->len_map + 1));
 		if (!game->map)
 			return ;
-		ft_strlcpy(game->map[game->count_line], game->line, len + 1);
+		ft_strlcpy(game->map[game->count_line], game->line, game->len_map + 1);
 		game->count_line++;
 		free(game->line);
 	}
@@ -65,7 +69,8 @@ int	ft_movements(int keycode, t_game *game)
 			check_beer = ft_check_beer(game);
 			if (check_beer == 0)
 			{
-				printf("Move up\n");
+				game->nbr_move++;
+				printf("Move up,    total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_y -= 32;
 				mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -75,7 +80,8 @@ int	ft_movements(int keycode, t_game *game)
 		}
 		else
 		{
-			printf("Move up\n");
+			game->nbr_move++;
+			printf("Move up,    total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_y -= 32;
 			mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -90,7 +96,8 @@ int	ft_movements(int keycode, t_game *game)
 			check_beer = ft_check_beer(game);
 			if (check_beer == 0)
 			{
-				printf("Move left\n");
+				game->nbr_move++;
+				printf("Move left,  total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_x -= 32;
 				mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -101,7 +108,8 @@ int	ft_movements(int keycode, t_game *game)
 		}
 		else
 		{
-			printf("Move left\n");
+			game->nbr_move++;
+			printf("Move left,  total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_x -= 32;
 			mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -117,7 +125,8 @@ int	ft_movements(int keycode, t_game *game)
 			check_beer = ft_check_beer(game);
 			if (check_beer == 0)
 			{
-				printf("Move down\n");
+				game->nbr_move++;
+				printf("Move down,  total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_y += 32;
 				mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -127,7 +136,8 @@ int	ft_movements(int keycode, t_game *game)
 		}
 		else
 		{
-			printf("Move down\n");
+			game->nbr_move++;
+			printf("Move down,  total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_y += 32;
 			mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -142,7 +152,8 @@ int	ft_movements(int keycode, t_game *game)
 			check_beer = ft_check_beer(game);
 			if (check_beer == 0)
 			{
-				printf("Move right\n");
+				game->nbr_move++;
+				printf("Move right, total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_x += 32;
 				mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -152,7 +163,8 @@ int	ft_movements(int keycode, t_game *game)
 		}
 		else
 		{
-			printf("Move right\n");
+			game->nbr_move++;
+			printf("Move right, total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_x += 32;
 			mlx_put_image_to_window(game->mlx, game->window, game->player, game->player_x, game->player_y);
@@ -181,6 +193,7 @@ int	main(int argc, char **argv)
 		printf("Invalid input\n");
 		return (0);
 	}
+
 	game.fd = open(argv[1], O_RDONLY);
 	while ((game.line = get_next_line(game.fd)) != NULL)
 	{
@@ -201,6 +214,7 @@ int	main(int argc, char **argv)
 	game.player = mlx_xpm_file_to_image(game.mlx, "assets/player.xpm", &game.width, &game.height);
 	game.y = 0;
 	game.fd = open(argv[1], O_RDONLY);
+	game.nbr_move = 0;
 	while ((game.line = get_next_line(game.fd)) != NULL)
 	{
 		game.x = 0;
@@ -208,21 +222,13 @@ int	main(int argc, char **argv)
 		while (game.line[game.i] != '\0' && game.line[game.i] != '\n')
 		{
 			if (game.line[game.i] == '1')
-			{
 				mlx_put_image_to_window(game.mlx, game.window, game.wall, game.x, game.y);
-			}
 			else if (game.line[game.i] == '0')
-			{
 				mlx_put_image_to_window(game.mlx, game.window, game.ground, game.x, game.y);
-			}
 			else if (game.line[game.i] == 'C')
-			{
 				mlx_put_image_to_window(game.mlx, game.window, game.beer, game.x, game.y);
-			}
 			else if (game.line[game.i] == 'E')
-			{
 				mlx_put_image_to_window(game.mlx, game.window, game.exit, game.x, game.y);
-			}
 			else if (game.line[game.i] == 'P')
 			{
 				mlx_put_image_to_window(game.mlx, game.window, game.player, game.x, game.y);
@@ -239,6 +245,12 @@ int	main(int argc, char **argv)
 	}
 	close(game.fd);
 	ft_fill_map(argv, &game);
+	if (ft_check_map(&game) == 1)
+	{
+		printf("Invalid map\n");
+		return (0);
+	}
 	mlx_key_hook(game.window, ft_movements, &game);
+	mlx_hook(game.window, 17, 1L << 2, ft_close_window, NULL);
 	mlx_loop(game.mlx);
 }
