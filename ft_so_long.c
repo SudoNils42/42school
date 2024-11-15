@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:19:52 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/15 16:06:45 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/15 17:42:10 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ int	main(int argc, char **argv)
 	}
 	close(game.fd);
 	ft_fill_map(argv, &game);
-	if (ft_check_map(&game) == 1 || ft_check_wall(&game) == 1)
+	if (ft_check_map(&game) == 1 || ft_check_wall(&game) == 1 || ft_valid_path(&game) == 1)
 	{
 		printf("Error\nInvalid map\n");
 		return (0);

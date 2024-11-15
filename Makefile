@@ -6,7 +6,7 @@
 #    By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 11:32:19 by nbonnet           #+#    #+#              #
-#    Updated: 2024/11/15 15:43:21 by nbonnet          ###   ########.fr        #
+#    Updated: 2024/11/15 17:42:27 by nbonnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ PRINTF = $(PATH_PRINTF)/libftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -I$(PATH_MLX)
-SRCS = $(PATH_GNL)/get_next_line_utils.c $(PATH_GNL)/get_next_line.c ft_so_long.c ft_check_map.c
+SRCS = $(PATH_GNL)/get_next_line_utils.c $(PATH_GNL)/get_next_line.c ft_so_long.c ft_check_map.c ft_valid_path.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) $(PRINTF) $(MLX) $(NAME)

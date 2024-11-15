@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:49:55 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/15 16:05:25 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/15 17:36:31 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_game
 
 int	ft_check_map(t_game *game);
 int	ft_check_wall(t_game *game);
+int	ft_valid_path(t_game *game);
 void	ft_fill_map(char **argv, t_game *game);
 
 
