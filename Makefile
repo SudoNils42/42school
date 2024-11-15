@@ -6,7 +6,7 @@
 #    By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 11:32:19 by nbonnet           #+#    #+#              #
-#    Updated: 2024/11/13 17:04:49 by nbonnet          ###   ########.fr        #
+#    Updated: 2024/11/15 15:43:21 by nbonnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ all: $(LIBFT) $(PRINTF) $(MLX) $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX) -framework OpenGL -framework AppKit
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX) -framework OpenGL -framework AppKit -o $(NAME)
 
 $(MLX):
 	make -C $(PATH_MLX)

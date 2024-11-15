@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:19:52 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/13 18:49:22 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/15 16:06:45 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ int	main(int argc, char **argv)
 	game.count_line = 0;
 	if (argc != 2 || ft_strncmp(argv[1] + strlen(argv[1]) - 4, ".ber", 4) != 0)
 	{
-		printf("Invalid input\n");
+		printf("Error\nInvalid input\n");
 		return (0);
 	}
 
@@ -245,9 +245,9 @@ int	main(int argc, char **argv)
 	}
 	close(game.fd);
 	ft_fill_map(argv, &game);
-	if (ft_check_map(&game) == 1)
+	if (ft_check_map(&game) == 1 || ft_check_wall(&game) == 1)
 	{
-		printf("Invalid map\n");
+		printf("Error\nInvalid map\n");
 		return (0);
 	}
 	mlx_key_hook(game.window, ft_movements, &game);

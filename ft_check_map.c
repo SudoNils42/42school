@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:18:57 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/13 18:51:58 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/15 16:16:10 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,35 @@ int	ft_check_map(t_game *game)
 	return (0);
 }
 
+int	ft_check_wall(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (game->map[0][j] != '\0' && game->map[0][j] != '\n')
+	{
+		if (game->map[0][j] != '1')
+			return (1);
+		else
+			j++;
+	}
+	j = 0;
+	while (game->map[game->count_line - 1][j] != '\0' && game->map[game->count_line - 1][j] != '\n')
+	{
+		if (game->map[game->count_line - 1][j] != '1')
+			return (1);
+		else
+			j++;
+	}
+	i = 1;
+	while (i < game->count_line - 1)
+	{
+		if (game->map[i][0] != '1' || game->map[i][game->len_map - 2] != '1')
+			return (1);
+		else
+			i++;
+	}
+	return (0);
+}
