@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:18:57 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/16 15:45:43 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/16 16:19:05 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_check_map(t_game *game)
 	while (i < game->count_line)
 	{
 		j = 0;
-		while (game->map[i][j] != game->len_map - 1)
+		while (j < game->len_map - 1)
 		{
 			if (game->map[i][j] == 'E')
 				flag_E++;
