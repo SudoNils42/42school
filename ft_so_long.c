@@ -6,11 +6,19 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:19:52 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/16 15:35:52 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/16 17:27:34 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+char	*ft_totalsteps(t_game *game)
+{
+	char	*str;
+
+	str = ft_itoa(game->nbr_move);
+	return (str);
+}
 
 int	ft_close_window(void)
 {
@@ -70,6 +78,7 @@ int	ft_movements(int keycode, t_game *game)
 			if (check_beer == 0)
 			{
 				game->nbr_move++;
+				mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 				printf("Move up,    total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_y -= 32;
@@ -81,6 +90,7 @@ int	ft_movements(int keycode, t_game *game)
 		else
 		{
 			game->nbr_move++;
+			mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 			printf("Move up,    total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_y -= 32;
@@ -97,6 +107,7 @@ int	ft_movements(int keycode, t_game *game)
 			if (check_beer == 0)
 			{
 				game->nbr_move++;
+				mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 				printf("Move left,  total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_x -= 32;
@@ -109,6 +120,7 @@ int	ft_movements(int keycode, t_game *game)
 		else
 		{
 			game->nbr_move++;
+			mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 			printf("Move left,  total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_x -= 32;
@@ -126,6 +138,7 @@ int	ft_movements(int keycode, t_game *game)
 			if (check_beer == 0)
 			{
 				game->nbr_move++;
+				mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 				printf("Move down,  total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_y += 32;
@@ -137,6 +150,7 @@ int	ft_movements(int keycode, t_game *game)
 		else
 		{
 			game->nbr_move++;
+			mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 			printf("Move down,  total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_y += 32;
@@ -153,6 +167,7 @@ int	ft_movements(int keycode, t_game *game)
 			if (check_beer == 0)
 			{
 				game->nbr_move++;
+				mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 				printf("Move right, total steps: %d\n", game->nbr_move);
 				mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 				game->player_x += 32;
@@ -164,6 +179,7 @@ int	ft_movements(int keycode, t_game *game)
 		else
 		{
 			game->nbr_move++;
+			mlx_string_put(game->mlx, game->window, 40, 20, 0xFFFDF, ft_totalsteps(game));
 			printf("Move right, total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window, game->ground, game->player_x, game->player_y);
 			game->player_x += 32;
