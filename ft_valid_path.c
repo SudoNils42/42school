@@ -6,44 +6,71 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:34:09 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/15 17:58:36 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/16 15:36:46 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_valid_path(t_game *game)
+void	ft_replace_C(t_game *game, int x, int y)
 {
-	int	collected_beer;
-
-	collected_beer = 0;
-
-
-
-	if (collected_beer != ft_count_beer(&game))
-		return (1);
-	return (0);
+	if (x < 0 || y < 0 || y >= game->count_line || x >= game->len_map - 1)
+		return ;
+	if (game->map[y][x] == '1' || game->map[y][x] == '2' || game->map[y][x] == 'E')
+		return ;
+	game->map[y][x] = '2';
+	ft_replace_C(game, x + 1, y);
+	ft_replace_C(game, x - 1, y);
+	ft_replace_C(game, x, y + 1);
+	ft_replace_C(game, x, y - 1);
 }
 
-int	ft_count_beer(t_game *game)
+void	ft_replace_E(t_game *game, int x, int y)
+{
+	if (x < 0 || y < 0 || y >= game->count_line || x >= game->len_map - 1)
+		return ;
+	if (game->map[y][x] == '1' || game->map[y][x] == '2')
+		return ;
+	game->map[y][x] = '2';
+	ft_replace_E(game, x - 1, y);
+	ft_replace_E(game, x + 1, y);
+	ft_replace_E(game, x, y + 1);
+	ft_replace_E(game, x, y - 1);
+}
+
+int	ft_valid_path(t_game *game)
 {
 	int	i;
 	int	j;
-	int count_beer;
 
 	i = 0;
 	j = 0;
-	count_beer = 0;
-	while (j < game->count_line)
+	ft_replace_C(game, game->player_x / 32, game->player_y / 32);
+	while (i < game->count_line)
 	{
-		i = 0;
-		while (game->map[j][i] != '\n' || game->map[j][i] != '\0')
+		j = 0;
+		while (j < game->len_map - 1)
 		{
-			if (game->map[j][i] == 'C')
-				count_beer++;
-			i++;
+			if (game->map[i][j] == 'C')
+				return (1);
+			j++;
 		}
-		j++;
+		i++;
 	}
-	return (count_beer);
+	ft_fill_map(game->argv, game);
+	i = 0;
+	j = 0;
+	ft_replace_E(game, game->player_x / 32, game->player_y / 32);
+	while (i < game->count_line)
+	{
+		j = 0;
+		while (j < game->len_map - 1)
+		{
+			if (game->map[i][j] == 'E')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

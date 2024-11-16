@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:19:52 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/15 17:42:10 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/16 15:35:52 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ int	main(int argc, char **argv)
 	game.y = 0;
 	game.fd = open(argv[1], O_RDONLY);
 	game.nbr_move = 0;
+	game.argv = argv;
 	while ((game.line = get_next_line(game.fd)) != NULL)
 	{
 		game.x = 0;
@@ -250,6 +251,7 @@ int	main(int argc, char **argv)
 		printf("Error\nInvalid map\n");
 		return (0);
 	}
+	ft_fill_map(argv, &game);
 	mlx_key_hook(game.window, ft_movements, &game);
 	mlx_hook(game.window, 17, 1L << 2, ft_close_window, NULL);
 	mlx_loop(game.mlx);
