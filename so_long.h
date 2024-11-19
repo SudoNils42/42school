@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:49:55 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/16 15:35:29 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/19 15:11:08 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ typedef struct s_game
 	void	*beer;
 	void	*exit;
 	void	*player;
+	void	*scoreboard;
 	int		width;
 	int		height;
+	int		width_s;
+	int		height_s;
 	int		fd;
 	char	*line;
 	int		x;
