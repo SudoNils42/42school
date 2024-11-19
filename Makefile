@@ -6,7 +6,7 @@
 #    By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 11:32:19 by nbonnet           #+#    #+#              #
-#    Updated: 2024/11/16 15:10:52 by nbonnet          ###   ########.fr        #
+#    Updated: 2024/11/19 20:48:08 by nbonnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ PRINTF = $(PATH_PRINTF)/libftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -I$(PATH_MLX)
-SRCS = $(PATH_GNL)/get_next_line_utils.c $(PATH_GNL)/get_next_line.c ft_so_long.c ft_check_map.c ft_valid_path.c
+SRCS = $(PATH_GNL)/get_next_line_utils.c $(PATH_GNL)/get_next_line.c ft_so_long.c ft_check_map.c ft_valid_path.c ft_other.c ft_up_left.c ft_mov_down_right.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) $(PRINTF) $(MLX) $(NAME)
@@ -54,6 +54,9 @@ fclean: clean
 	rm -f $(NAME)
 	make fclean -C $(PATH_LIBFT)
 	make fclean -C $(PATH_PRINTF)
+
+norm :
+	@norminette $(SRCS)
 
 re: fclean all
 
