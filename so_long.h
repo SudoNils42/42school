@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:49:55 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/19 20:58:03 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/20 12:14:34 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_left(t_game *game);
 void	ft_left2(t_game *game);
 void	ft_up(t_game *game);
 void	ft_up2(t_game *game);
-int	ft_movements(int keycode, t_game *game);
+int		ft_movements(int keycode, t_game *game);
 void	ft_right(t_game *game);
 void	ft_right2(t_game *game);
 void	ft_down(t_game *game);

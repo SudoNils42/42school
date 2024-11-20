@@ -6,7 +6,7 @@
 #    By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 11:32:19 by nbonnet           #+#    #+#              #
-#    Updated: 2024/11/19 21:01:14 by nbonnet          ###   ########.fr        #
+#    Updated: 2024/11/20 12:15:45 by nbonnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ fclean: clean
 	make fclean -C $(PATH_PRINTF)
 
 norm :
-	@norminette $(SRCS)
+	@norminette $(SRCS) so_long.h
 
 re: fclean all
 
