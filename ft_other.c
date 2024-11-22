@@ -6,22 +6,15 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:40:13 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/19 20:40:34 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:44:20 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_totalsteps(t_game *game)
+int	ft_close_window(t_game *game)
 {
-	char	*str;
-
-	str = ft_itoa(game->nbr_move);
-	return (str);
-}
-
-int	ft_close_window(void)
-{
+	ft_clean_up(game);
 	ft_printf("You left the bar\n");
 	exit(0);
 }
@@ -59,12 +52,17 @@ void	ft_fill_map(char **argv, t_game *game)
 		game->len_map = ft_strlen(game->line);
 		game->map[game->count_line]
 			= malloc(sizeof(char) * (game->len_map + 1));
-		if (!game->map)
+		if (!game->map[game->count_line])
+		{
+			ft_free_map(game);
+			close(game->fd);
 			return ;
+		}
 		ft_strlcpy(game->map[game->count_line], game->line, game->len_map + 1);
 		game->count_line++;
 		free(game->line);
 		game->line = get_next_line(game->fd);
 	}
+	game->map[game->count_line] = NULL;
 	close(game->fd);
 }

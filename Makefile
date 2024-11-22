@@ -25,7 +25,7 @@ PRINTF = $(PATH_PRINTF)/libftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -I$(PATH_MLX)
-SRCS = $(PATH_GNL)/get_next_line_utils.c $(PATH_GNL)/get_next_line.c ft_so_long.c ft_check_map.c ft_valid_path.c ft_other.c ft_up_left.c ft_mov_down_right.c
+SRCS = $(PATH_GNL)/get_next_line_utils.c $(PATH_GNL)/get_next_line.c ft_clean_all.c ft_so_long.c ft_check_map.c ft_valid_path.c ft_other.c ft_up_left.c ft_mov_down_right.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) $(PRINTF) $(MLX) $(NAME)

@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:19:52 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/19 20:59:05 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:41:36 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,25 @@ int	ft_start1(t_game *game, int argc, char **argv)
 {
 	game->len_line = 0;
 	game->count_line = 0;
-	if (argc != 2 || ft_strncmp(argv[1] + strlen(argv[1]) - 4, ".ber", 4) != 0)
+	if (argc != 2
+		|| ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4) != 0)
 	{
 		ft_printf("Error\nInvalid input\n");
+		ft_clean_up(game);
 		return (0);
 	}
 	game->fd = open(argv[1], O_RDONLY);
 	game->line = get_next_line(game->fd);
 	while (game->line != NULL)
 	{
-		game->line = get_next_line(game->fd);
 		game->count_line++;
 		if (game->len_line == 0)
 			game->len_line = ft_strlen(game->line) - 1;
 		free(game->line);
+		game->line = get_next_line(game->fd);
 	}
+	if (game->line)
+		free(game->line);
 	close(game->fd);
 	return (1);
 }
@@ -102,6 +106,8 @@ void	ft_print_map(t_game *game, char **argv)
 		free(game->line);
 		game->line = get_next_line(game->fd);
 	}
+	if (game->line)
+		free(game->line);
 	close(game->fd);
 }
 
@@ -120,10 +126,12 @@ int	main(int argc, char **argv)
 		|| ft_valid_path(&game) == 1)
 	{
 		ft_printf("Error\nInvalid map\n");
+		ft_clean_up(&game);
 		return (0);
 	}
+	ft_free_map(&game);
 	ft_fill_map(argv, &game);
 	mlx_key_hook(game.window, ft_movements, &game);
-	mlx_hook(game.window, 17, 1L << 2, ft_close_window, NULL);
+	mlx_hook(game.window, 17, 1L << 2, ft_close_window, &game);
 	mlx_loop(game.mlx);
 }

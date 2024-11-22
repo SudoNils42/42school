@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:34:09 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/19 16:31:03 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:43:22 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,16 @@ void	ft_replace_e(t_game *game, int x, int y)
 int	ft_valid_path2(t_game *game)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (i < game->count_line)
 	{
-		j = 0;
-		while (j < game->len_map - 1)
+		game->j = 0;
+		while (game->j < game->len_map - 1)
 		{
-			if (game->map[i][j] == 'C')
+			if (game->map[i][game->j] == 'C')
 				return (1);
-			j++;
+			game->j++;
 		}
 		i++;
 	}
@@ -62,26 +61,26 @@ int	ft_valid_path2(t_game *game)
 int	ft_valid_path(t_game *game)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
+	game->j = 0;
 	ft_replace_c(game, game->player_x / 32, game->player_y / 32);
-	j = ft_valid_path2(game);
-	if (j == 1)
+	game->j = ft_valid_path2(game);
+	if (game->j == 1)
 		return (1);
+	ft_free_map(game);
 	ft_fill_map(game->argv, game);
 	i = 0;
-	j = 0;
+	game->j = 0;
 	ft_replace_e(game, game->player_x / 32, game->player_y / 32);
 	while (i < game->count_line)
 	{
-		j = 0;
-		while (j < game->len_map - 1)
+		game->j = 0;
+		while (game->j < game->len_map - 1)
 		{
-			if (game->map[i][j] == 'E')
+			if (game->map[i][game->j] == 'E')
 				return (1);
-			j++;
+			game->j++;
 		}
 		i++;
 	}

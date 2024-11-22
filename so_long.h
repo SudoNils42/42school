@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:49:55 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/20 12:14:34 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:42:34 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_game
 	int		x;
 	int		y;
 	int		i;
+	int		j;
 	int		player_x;
 	int		player_y;
 	int		count_line;
@@ -52,6 +53,7 @@ typedef struct s_game
 	int		flag_p;
 	int		check_beer;
 	int		len_line;
+	char	*steps;
 }	t_game;
 
 int		ft_check_map(t_game *game);
@@ -62,10 +64,9 @@ void	ft_replace_E(t_game *game, int x, int y);
 int		ft_valid_path(t_game *game);
 int		ft_valid_path2(t_game *game);
 void	ft_fill_map(char **argv, t_game *game);
-char	*ft_totalsteps(t_game *game);
 int		ft_check_beer(t_game *game);
 void	ft_fill_map(char **argv, t_game *game);
-int		ft_close_window(void);
+int		ft_close_window(t_game *game);
 void	ft_left(t_game *game);
 void	ft_left2(t_game *game);
 void	ft_up(t_game *game);
@@ -75,4 +76,6 @@ void	ft_right(t_game *game);
 void	ft_right2(t_game *game);
 void	ft_down(t_game *game);
 void	ft_down2(t_game *game);
+void	ft_clean_up(t_game *game);
+void	ft_free_map(t_game *game);
 #endif

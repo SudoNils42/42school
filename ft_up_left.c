@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:44:00 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/11/19 20:45:17 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:47:11 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	ft_up2(t_game *game)
 	game->nbr_move++;
 	mlx_put_image_to_window(game->mlx, game->window,
 		game->scoreboard, 35, 5);
+	game->steps = ft_itoa(game->nbr_move);
 	mlx_string_put(game->mlx, game->window,
-		40, 20, 0xFFFDF, ft_totalsteps(game));
+		40, 20, 0xFFFDF, game->steps);
+	free(game->steps);
 	ft_printf("Move up,    total steps: %d\n", game->nbr_move);
 	mlx_put_image_to_window(game->mlx, game->window,
 		game->ground, game->player_x, game->player_y);
@@ -37,8 +39,9 @@ void	ft_up(t_game *game)
 			game->nbr_move++;
 			mlx_put_image_to_window(game->mlx, game->window,
 				game->scoreboard, 35, 5);
+			game->steps = ft_itoa(game->nbr_move);
 			mlx_string_put(game->mlx, game->window,
-				40, 20, 0xFFFDF, ft_totalsteps(game));
+				40, 20, 0xFFFDF, game->steps);
 			ft_printf("Move up,    total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window,
 				game->ground, game->player_x, game->player_y);
@@ -60,8 +63,10 @@ void	ft_left2(t_game *game)
 	game->nbr_move++;
 	mlx_put_image_to_window(game->mlx, game->window,
 		game->scoreboard, 35, 5);
+	game->steps = ft_itoa(game->nbr_move);
 	mlx_string_put(game->mlx, game->window,
-		40, 20, 0xFFFDF, ft_totalsteps(game));
+		40, 20, 0xFFFDF, game->steps);
+	free(game->steps);
 	ft_printf("Move left,  total steps: %d\n", game->nbr_move);
 	mlx_put_image_to_window(game->mlx, game->window,
 		game->ground, game->player_x, game->player_y);
@@ -80,8 +85,9 @@ void	ft_left(t_game *game)
 			game->nbr_move++;
 			mlx_put_image_to_window(game->mlx, game->window,
 				game->scoreboard, 35, 5);
+			game->steps = ft_itoa(game->nbr_move);
 			mlx_string_put(game->mlx, game->window,
-				40, 20, 0xFFFDF, ft_totalsteps(game));
+				40, 20, 0xFFFDF, game->steps);
 			ft_printf("Move left,  total steps: %d\n", game->nbr_move);
 			mlx_put_image_to_window(game->mlx, game->window,
 				game->ground, game->player_x, game->player_y);
