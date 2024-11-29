@@ -6,7 +6,7 @@
 /*   By: nbonnet <nbonnet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:58:27 by nbonnet           #+#    #+#             */
-/*   Updated: 2024/10/11 12:21:51 by nbonnet          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:16:00 by nbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 static char	*ft_strdup1(const char *s1, int start, int len)
 {
 	int		i;
-	int		j;
 	char	*s2;
 
 	i = 0;
-	j = start;
 	start = 0;
 	while (start < len)
 	{
